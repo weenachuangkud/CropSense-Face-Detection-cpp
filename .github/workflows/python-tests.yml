@@ -1,30 +1,24 @@
-name: Python Testing
+name: C++ Build
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
-  dependencies-test:
+  build:
     runs-on: windows-latest
 
-    strategy:
-      matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11"]
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: Install dependencies
+      - name: Install OpenCV
         run: |
-          pip install -r requirements.txt
+          choco install opencv
+
+      - name: Configure with CMake
+        run: cmake -B build
+
+      - name: Build
+        run: cmake --build build
