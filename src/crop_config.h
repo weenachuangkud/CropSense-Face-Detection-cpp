@@ -9,4 +9,4 @@ struct CropConfig
     std::string debug_folder;
     std::string output_folder;
     int crop_type;
-}
+};
