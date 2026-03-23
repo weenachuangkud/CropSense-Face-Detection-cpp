@@ -2,12 +2,17 @@
 
 int main()
 {
-    // Load an image
-    cv::Mat img = cv::imread("image.jpg");
+    cv::VideoCapture cap(0); // 0 = default webcam
+    cv::Mat frame;
 
-    // Show it in a window
-    cv::imshow("Window", img);
-    cv::waitKey(0);
+    while(true)
+    {
+        cap >> frame;
+        cv::imshow("Webcam", frame);
+
+        if(cv::waitKey(1) == 27) // press ESC to quit
+            break;
+    }
 
     return 0;
 }
