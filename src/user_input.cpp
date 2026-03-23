@@ -26,7 +26,7 @@ CropConfig select_option() {
     }
 
     CropConfig config;
-    config.crop_type = option;
+    config.crop_type = (CropType)option;
 
     if (option == 1) {
         config.top_margin = 1.0f;
