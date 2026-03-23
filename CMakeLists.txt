@@ -11,7 +11,18 @@ endif()
 if(NOT EXISTS "${OpenCV_DIR}/OpenCVConfig.cmake")
     message(FATAL_ERROR "OpenCVConfig.cmake not found in ${OpenCV_DIR}")
 endif()
-find_package(OpenCV REQUIRED)
+find_package(OpenCV QUIET)
+
+if(NOT OpenCV_FOUND)
+    message(FATAL_ERROR
+        "OpenCV not found!\n"
+        "Check these:\n"
+        "1. OpenCV_DIR is correct\n"
+        "2. OpenCV is built (lib folder exists)\n"
+        "3. Architecture matches (x64 vs x86)\n"
+    )
+endif()
+
 add_executable(main
     src/main.cpp
     src/user_input.cpp
