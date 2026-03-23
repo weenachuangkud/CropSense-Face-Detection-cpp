@@ -2,6 +2,7 @@
 
 #include<string>
 #include "crop_config.h"
+#include "user_input.h"
 
 struct ImageProcessConfig {
     int output_res;
@@ -20,5 +21,6 @@ void images_error(
 int process_image(
     const std::string& image_path,
     const CropConfig& crop,
-    const ImageProcessConfig& config
+    const ImageProcessConfig& process_config,
+    const PreviewConfig& preview_config
 );
