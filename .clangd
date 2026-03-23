@@ -1,0 +1,4 @@
+CompileFlags:
+  Add:
+    - "-IC:\\libraries\\opencv\\build\\include"
+    - "-IC:\\libraries\\opencv\\build\\include\\opencv2"
