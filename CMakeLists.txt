@@ -38,3 +38,7 @@ target_link_libraries(main
     ${OpenCV_LIBS}
     nlohmann_json::nlohmann_json
 )
+
+message(STATUS "OpenCV version: ${OpenCV_VERSION}")
+message(STATUS "OpenCV include dirs: ${OpenCV_INCLUDE_DIRS}")
+message(STATUS "OpenCV libraries: ${OpenCV_LIBS}")
