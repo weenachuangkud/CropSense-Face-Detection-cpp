@@ -1,6 +1,5 @@
 CompileFlags:
-  Compiler: g++
   Add:
     - "-std=c++17"
-    - "-IC:/libraries/opencv/build/include"
-    - "-IC:/libraries/nlohmann"
+    - "-I C:/libraries/opencv/build/include"
+    - "-I C:/libraries/nlohmann"
