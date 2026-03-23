@@ -1,27 +1,22 @@
-name: C++ Build
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: Window C++ build
 
 on:
-push:
-branches: [ main ]
-pull_request:
-branches: [ main ]
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-build:
-runs-on: windows-latest
-
-
-steps:
-  - uses: actions/checkout@v3
-
-  - name: Setup MSVC
-    uses: ilammy/msvc-dev-cmd@v1
-
-  - name: Install Ninja
-    run: choco install ninja
-
-  - name: Configure with CMake (Ninja + MSVC)
-    run: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
-
-  - name: Build
-    run: cmake --build build
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+      - name: Install Ninja
+        run: choco install ninja
+      - name: Configure with CMake (Ninja + MSVC)
+        run: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+      - name: Build
+        run: cmake --build build
