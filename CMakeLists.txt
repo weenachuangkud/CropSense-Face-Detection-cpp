@@ -6,16 +6,18 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # ---- OpenCV setup ----
-if(NOT DEFINED OpenCV_DIR)
-    set(OpenCV_DIR "C:/libraries/opencv/build")
-    message(STATUS "Using default OpenCV_DIR: ${OpenCV_DIR}")
+if(WIN32)
+    if(NOT DEFINED OpenCV_DIR)
+        set(OpenCV_DIR "C:/libraries/opencv/build")
+        message(STATUS "Using default OpenCV_DIR: ${OpenCV_DIR}")
+    endif()
+    if(NOT EXISTS "${OpenCV_DIR}/OpenCVConfig.cmake")
+        message(FATAL_ERROR "OpenCVConfig.cmake not found in ${OpenCV_DIR}")
+    endif()
+    find_package(OpenCV QUIET PATHS "${OpenCV_DIR}")
+else()
+    find_package(OpenCV REQUIRED)
 endif()
-
-if(NOT EXISTS "${OpenCV_DIR}/OpenCVConfig.cmake")
-    message(FATAL_ERROR "OpenCVConfig.cmake not found in ${OpenCV_DIR}")
-endif()
-
-find_package(OpenCV QUIET PATHS "${OpenCV_DIR}")
 
 if(NOT OpenCV_FOUND)
     message(FATAL_ERROR
