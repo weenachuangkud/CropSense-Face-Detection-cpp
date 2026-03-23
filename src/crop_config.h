@@ -10,10 +10,10 @@ enum class CropType {
 
 struct CropConfig
 {
-    float top_margin;
-    float bottom_margin;
     std::string error_folder;
     std::string debug_folder;
     std::string output_folder;
+    float top_margin;
+    float bottom_margin;
     CropType crop_type;
 };
