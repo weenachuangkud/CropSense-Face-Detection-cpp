@@ -7,20 +7,21 @@ pull_request:
 branches: [ main ]
 
 jobs:
-    build:
-        runs-on: windows-latest
+build:
+runs-on: windows-latest
 
-            steps:
-            - uses: actions/checkout@v3
 
-            - name: Setup MSVC
-                uses: ilammy/msvc-dev-cmd@v1
+steps:
+  - uses: actions/checkout@v3
 
-            - name: Install Ninja
-                run: choco install ninja
+  - name: Setup MSVC
+    uses: ilammy/msvc-dev-cmd@v1
 
-            - name: Configure with CMake (Ninja + MSVC)
-                run: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+  - name: Install Ninja
+    run: choco install ninja
 
-            - name: Build
-                run: cmake --build build
+  - name: Configure with CMake (Ninja + MSVC)
+    run: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+
+  - name: Build
+    run: cmake --build build
