@@ -1,7 +1,9 @@
 # yaml-language-server: $schema=https://json.schemastore.org/clangd.json
 
 CompileFlags:
+  CompilationDatabase: "build/"
+
   Add:
     - "-std=c++17"
-    - "-I C:/libraries/opencv/build/include"
-    - "-I C:/libraries/nlohmann"
+    - "-IC:/libraries/opencv/build/include"
+    - "-IC:/libraries/nlohmann"
