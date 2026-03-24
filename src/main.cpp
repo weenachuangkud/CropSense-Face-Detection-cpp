@@ -4,6 +4,6 @@
 
 int main()
 {
-    std::ifstream f("config.json");
+    std::ifstream config("config.json");
     return 0;
 }
