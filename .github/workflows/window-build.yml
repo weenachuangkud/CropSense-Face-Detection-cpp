@@ -12,11 +12,21 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Setup MSVC
         uses: ilammy/msvc-dev-cmd@v1
+
       - name: Install Ninja
         run: choco install ninja
+
+      - name: Install OpenCV
+        run: choco install opencv -y
+
+      - name: Find OpenCV path
+        run: dir C:\tools\opencv
+
       - name: Configure with CMake (Ninja + MSVC)
         run: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DOpenCV_DIR="C:/tools/opencv/build"
+
       - name: Build
         run: cmake --build build
