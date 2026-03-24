@@ -112,9 +112,45 @@ int main()
             break;
     }
 
+    fs::create_directories(crop.input_folder);
+
     PreviewConfig preview_config = preview_window();
 
-    processMultithread(crop, process_config, preview_config);
+    if (preview_config.parallel)
+    {
+        processMultithread(crop, process_config, preview_config);
+    }
+    else
+    {
+        // Singlethread mode
+        clean_output(crop.output_folder, crop.debug_folder, crop.error_folder);
+
+        std::vector<fs::path> inputFiles;
+        for (const auto& entry : fs::directory_iterator(crop.input_folder))
+            if (entry.is_regular_file())
+                inputFiles.push_back(entry.path());
+
+        int errorCount = 0;
+        int processed  = 0;
+        for (const auto& file : inputFiles)
+        {
+            errorCount += process_image(file.string(), crop, process_config, preview_config);
+            processed++;
+            std::cout << "\rProcessing: " << processed << "/" << inputFiles.size() << std::flush;
+        }
+
+        cv::destroyAllWindows();
+
+        int totalOutputImages = 0;
+        for (const auto& entry : fs::directory_iterator(crop.output_folder))
+            if (entry.is_regular_file())
+                totalOutputImages++;
+
+        std::cout << "\nTotal images: "       << inputFiles.size() << "\n"
+        << "Processed images: "     << inputFiles.size() - errorCount << "\n"
+        << "Total faces detected: " << totalOutputImages << "\n"
+        << "Error images: "         << errorCount << "\n";
+    }
 
     return 0;
 }
