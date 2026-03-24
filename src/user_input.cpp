@@ -92,6 +92,9 @@ void delete_files(const std::string& folder) {
 void clean_output(const std::string& output_folder,
                   const std::string& debug_output,
                   const std::string& error_folder) {
+    fs::create_directories(output_folder);
+    fs::create_directories(debug_output);
+    fs::create_directories(error_folder);
 
     while (!fs::is_empty(output_folder)) {
         char input;

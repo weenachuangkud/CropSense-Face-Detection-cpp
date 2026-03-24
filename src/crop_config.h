@@ -10,6 +10,7 @@ enum class CropType {
 
 struct CropConfig
 {
+    std::string input_folder;
     std::string error_folder;
     std::string debug_folder;
     std::string output_folder;
