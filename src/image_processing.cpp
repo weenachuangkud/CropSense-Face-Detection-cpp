@@ -21,6 +21,7 @@ void link_image_error(const std::string& image_path,
         fs::copy_file(image_path, linkPath, fs::copy_options::overwrite_existing);
 }
 
+// I have no ideas, what I'm doing
 int process_image(
     const std::string& image_path,
     const CropConfig& crop,
