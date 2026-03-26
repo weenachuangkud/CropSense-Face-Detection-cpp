@@ -31,7 +31,7 @@ CropSense is a tool to crop images based on various bounding box sizes, such as 
    cmake --build build
 ```
 
-### Linux
+### Linux (Ubuntu/Debian)
 1. Install OpenCV:
 ```bash
    sudo apt-get install -y libopencv-dev ninja-build
